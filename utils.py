@@ -22,8 +22,9 @@ def create_image_generators(config: Config):
 def create_generator_internal(path: str, seed, width, height, batch_size):
     data = ImageDataGenerator(
         rescale=1. / 255,
-        shear_range=0,
-        zoom_range=0.1,
+        shear_range=0.2,
+        zoom_range=0.2,
+        rotation_range=0.2,
         horizontal_flip=True,
         vertical_flip=True)
 

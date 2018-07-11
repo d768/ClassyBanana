@@ -11,7 +11,7 @@ X, y_train_valid = utils.create_image_generators(config)
 history = model.train_model(config, cnn, X, y_train_valid)
 
 
-y = utils.create_validation_generator(config, config.train_path)
+y = utils.create_validation_generator(config, config.test_path)
 
 model.predict(cnn, y, config)
 

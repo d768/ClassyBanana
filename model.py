@@ -41,11 +41,16 @@ def get_model(config: Config):
     model.add(LeakyReLU(alpha=config.leaky_rely_alpha))
     model.add(Dropout(config.dropout_rate))
 
+    model.add(Dense(config.dense_size3,
+                    kernel_initializer=initializers.glorot_normal(seed=config.seed)))
+    model.add(LeakyReLU(alpha=config.leaky_rely_alpha))
+    model.add(Dropout(config.dropout_rate))
+
     model.add(Dense(config.classes_num, activation='softmax',
                     kernel_initializer=initializers.glorot_normal(seed=config.seed)))
 
     model.compile(loss='categorical_crossentropy',
-                  optimizer=optimizers.RMSprop(lr=config.lr, decay=config.lr_decay),
+                  optimizer=optimizers.adam(lr=config.lr, decay=config.lr_decay),
                   metrics=['accuracy'])
 
     return model
